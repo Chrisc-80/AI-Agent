@@ -1,10 +1,24 @@
 import os
-from dotenv import load_dotenv
 from google import genai
+from dotenv import load_dotenv
+
 
 def main():
     load_dotenv()
-    api_key = os.environ.get("GEMINI_API_KEY")
+    api_key = os.environ.get(curl "https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=GEMINI_API_KEY" \
+  -H 'Content-Type: application/json' \
+  -X POST \
+  -d '{
+    "contents": [
+      {
+        "parts": [
+          {
+            "text": "Explain how AI works in a few words"
+          }
+        ]
+      }
+    ]
+  }')
     client = genai.Client(api_key=api_key)
     response = client.models.generate_content(
         model='gemini-2.0-flash-001', 
